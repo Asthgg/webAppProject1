@@ -55,7 +55,7 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(data);
-          window.M.toast({html: 'Tarea Guardada'});
+          window.M.toast({html: 'Tarea Guardadas'});
           this.setState({title: '', description: ''});
           this.fetchTasks();
         })
@@ -106,79 +106,6 @@ class App extends Component {
         this.setState({tasks: data});
         console.log(this.state.tasks);
       });
-  }
-
-  render() {
-    return (
-      <div>
-        {/* NAVIGATION */}
-        <nav className="light-blue darken-4">
-          <div className="container">
-            <div className="nav-wrapper">
-              <a href="#" className="brand-logo">MERN Stack</a>
-            </div>
-          </div>
-        </nav>
-
-        <div className="container">
-          <div className="row">
-            <div className="col s5">
-              <div className="card">
-                <div className="card-content">
-                  <form onSubmit={this.addTask}>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Titulo Tarea" autoFocus/>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <textarea name="description" onChange={this.handleChange} value={this.state.description} cols="30" rows="10" placeholder="Descripción de tarea" className="materialize-textarea"></textarea>
-                      </div>
-                    </div>
-
-                    <button type="submit" className="btn light-blue darken-4">
-                      Enviar 
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div className="col s7">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Titulo</th>
-                    <th>Descripción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { 
-                    this.state.tasks.map(task => {
-                      return (
-                        <tr key={task._id}>
-                          <td>{task.title}</td>
-                          <td>{task.description}</td>
-                          <td>
-                            <button onClick={() => this.deleteTask(task._id)} className="btn light-blue darken-4">
-                              <i className="material-icons">delete</i> 
-                            </button>
-                            <button onClick={() => this.editTask(task._id)} className="btn light-blue darken-4" style={{margin: '4px'}}>
-                              <i className="material-icons">edit</i>
-                            </button>
-                          </td>
-                        </tr>
-                      )
-                    })
-                  }
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <Footer/>
-      </div>
-    )
   }
 }
 
