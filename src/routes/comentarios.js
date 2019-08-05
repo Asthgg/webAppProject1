@@ -9,14 +9,22 @@ const { isAuthenticated } = require('../helpers/auth');
 
 // Nuevo comentario
 router.get('/comentarios/add', isAuthenticated, (req, res) => {
-  res.render('comentarios/new-comentario');
+  try {
+    res.render('comentarios/new-comentario');
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 router.post('comentarios/new-comentario', isAuthenticated, async (req, res) => {
-  const { title, description } = req.body;
+  try {
+    const { title, topic, description } = req.body;
   const errors = [];
   if (!title) {
     errors.push({text: 'Please Write a Title.'});
+  }
+  if (!topic) {
+    errors.push({text: 'Please Write a Topic.'});
   }
   if (!description) {
     errors.push({text: 'Please Write a Description'});
@@ -25,24 +33,29 @@ router.post('comentarios/new-comentario', isAuthenticated, async (req, res) => {
     res.render('comentarios/new-comentario', {
       errors,
       title,
+      topic,
       description
     });
   } else {
-    const newComment = new Comentario({title, description});
+    const newComment = new Comentario({title, topic, description});
     newComment.user = req.user.id;
     await newComment.save();
     req.flash('success_msg', 'Comment Added Successfully');
     res.redirect('/comentarios');
   }
+    
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-// Get All Notes
+// Get comentarios
 router.get('/comentarios', isAuthenticated, async (req, res) => {
-  const notes = await Comentario.find({user: req.user.id}).sort({date: 'desc'});
+  const comentarios = await Comentario.find({user: req.user.id}).sort({date: 'desc'});
   res.render('comentarios/todos-comentarios', { comentarios });
 });
 
-// Edit Notes
+// Editar comentario
 router.get('/comentarios/edit/:id', isAuthenticated, async (req, res) => {
   const comentario = await Comentario.findById(req.params.id);
   if(comentario.user != req.user.id) {
@@ -59,7 +72,7 @@ router.put('/comentarios/edit-comentario/:id', isAuthenticated, async (req, res)
   res.redirect('/comentarios');
 });
 
-// Delete Notes
+// Delete comentario
 router.delete('/comentarios/delete/:id', isAuthenticated, async (req, res) => {
   await Comentario.findByIdAndDelete(req.params.id);
   req.flash('success_msg', 'Comentario Deleted Successfully');
