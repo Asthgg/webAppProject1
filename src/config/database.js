@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 mongoose.set('useFindAndModify', false);
 
-//const URI = 'ec2-52-201-225-180.compute-1.amazonaws.com:27017'
-const URI = 'mongodb://localhost/commentsdb'
+const URI = 'http://ec2-52-55-96-2.compute-1.amazonaws.com'
+//const URI = 'mongodb://localhost/commentsdb'
 
 mongoose.connect(URI, {
 	useCreateIndex: true,
