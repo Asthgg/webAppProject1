@@ -1,9 +1,40 @@
 body {
-  background: #1488CC;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #bf7166;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fdfeff, #bf7166);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #fdfeff, #bf7166); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .logo {
   width: 30%;
+}
+
+.panel-footer.panel-custom {
+    background: white;
+    color: black;
+}
+
+.btn {
+  margin: 0 auto;
+  display: block;
+}
+/*removes ugly bootstrap border button*/
+*.btn:active,
+.btn:focus,
+.btn:active:focus,
+.btn:focus {
+  outline: none !important;
+}
+
+button > span {
+  color: black;
+  font-size:20px;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn:active, .btn:hover, .btn:focus span{
+  background-color:white;
+  color: red
 }

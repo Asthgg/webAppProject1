@@ -18,7 +18,6 @@ router.get('/comentarios/add', isAuthenticated, (req, res) => {
 
 router.post('/comentarios/add', isAuthenticated, async (req, res) => {
   try {
-    console.log('HOLAA')
     const { title, topic, description } = req.body;
   const errors = [];
   if (!title) {
@@ -51,6 +50,12 @@ router.post('/comentarios/add', isAuthenticated, async (req, res) => {
 });
 
 // Get mis comentarios
+router.get('/miscomentarios', isAuthenticated, async (req, res) => {
+  const comentarios = await Comentario.find({user: req.user.id}).sort({date: 'desc'});
+  res.render('comentarios/mis-comentarios', { comentarios });
+});
+
+// Get comentario
 router.get('/comentarios', isAuthenticated, async (req, res) => {
   const comentarios = await Comentario.find({user: req.user.id}).sort({date: 'desc'});
   res.render('comentarios/todos-comentarios', { comentarios });
