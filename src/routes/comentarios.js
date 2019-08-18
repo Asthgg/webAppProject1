@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const Comentario = require('../models/Comentario');
+const Comentario = require('../models/comentario');
 
 // Helpers
 const { isAuthenticated } = require('../helpers/auth');
