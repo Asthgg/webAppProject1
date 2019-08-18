@@ -7,7 +7,7 @@ LABEL maintainer="Andrea González - agonza84@eafit.edu.co"
 ARG PORT=3000
 ENV PORT $PORT
 
-WORKDIR /WebAppProject1
+WORKDIR /oprinorion
 COPY . ./
 
 RUN npm install --test
