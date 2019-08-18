@@ -10,9 +10,9 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - nodeapp
-  nodeapp:
-    container_name: nodeapp
+      - opinorion
+  opinorion:
+    container_name: opinorion
     restart: always
     build: .
     ports:

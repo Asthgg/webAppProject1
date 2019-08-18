@@ -7,7 +7,7 @@ LABEL maintainer="Andrea González - agonza84@eafit.edu.co"
 ARG PORT=3000
 ENV PORT $PORT
 
-WORKDIR /nodeApp
+WORKDIR /WebAppProject1
 COPY . ./
 
 RUN npm install --test
