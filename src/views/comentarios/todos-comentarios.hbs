@@ -1,89 +1,55 @@
-<div class="row">
-  {{#each comentarios}}
-  <div class="col-md-3">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title d-flex justify-content-between align-items-center">
-          {{ title }} <a href="/comentarios/edit/{{_id}}"><i class="fas fa-edit"></i></a>
-        </h4>
-        <p>{{ timestamp}}</p>
-        <p>{{ user.id }}</p>
-        <p>{{ description }}</p>
-        
-        <!-- Comment REQUEST -->
-        <form action="/comentarios/delete/{{_id}}?_method=DELETE" method="POST">
-          <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-danger btn-block btn-sm">Comentar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  {{else}}
-  <div class="card mx-auto">
-    <div class="card-body">
-      <h1>Hello {{user.name}}</h1>
-      <p clsss="lead">No hay comentarios.</p>
-      <a href="/comentarios/add" class="btn btn-success btn-block">Comenta ahora!</a>
-    </div>
-  </div>
-  {{/each}}
-</div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Comentarios</h3>
-    </div><!-- /col-sm-12 -->
-  </div><!-- /row -->
-
-  {{#each comentarios}}
-  
-  <div class="row">
-    <div class="col-sm-1">
-      <div class="thumbnail">
-        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-      </div><!-- /thumbnail -->
-  </div><!-- /col-sm-1 -->
-
-  <div class="col-sm-5">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>{{ user }}</strong> <span class="text-muted">{{ timestamp }}</span>
-      </div>
-
-      <div class="panel-body">{{ description }}
-      </div><!-- /panel-body -->
-      
-      <div class = "panel-footer panel-custom">
-      
-
-      
-       <div class="btn-group mr-2 sm" role="group" aria-label="Footer buttons">
-         <!--- <button id="swapHeart" class="btn btn-light sm swap">
-            <span class="glyphicon glyphicon-heart-empty"></span>
-          </button> <p> {{ likes }} </p>--->
-
-          <!-- Comment REQUEST -->
-          <form action="/comentarios/add/{{_id}}?_method=ADD" method="POST">
-            <input type="hidden" name="_method" value="ADD">
-            <button type="submit" class="btn btn-light btn-sm">Comentar</button>
-          </form>
-          <span class="glyphicon glyphicon-eye-open sm-left"> {{ views }}</span>
-          
-       </div></div> <!--- button group--->
-
-      </div> <!--- panel footer--->
-
-    </div><!-- /panel panel-default -->
-  </div><!-- /col-sm-5 -->
-</div><!-- /row -->
-{{else}}
-  <div class="card mx-auto">
-    <div class="card-body">
-      <h1>Hello {{user.name}}</h1>
-      <p clsss="lead">No hay comentarios.</p>
-      <a href="/comentarios/add" class="btn btn-success btn-block">Comenta ahora!</a>
+  <div class="row justify-content-center">
+    <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Comentarios</h2>
+              </div>
+        </div>
     </div>
   </div>
-  {{/each}}
-</div><!-- /container -->
+
+<div class="container-fluid">
+{{#each comentarios}}
+
+<div class="col-sm-6">
+
+     <div class="media comment-box">
+      <div class="media-left">
+        <img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="rounded-circle" width="60" height="60">
+      </div>
+
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <hr/>
+
+          <div class="media-body">
+
+            <div class="row">
+              <p align="right" >{{user}}</p>
+            </div>
+ 
+              <h4>{{ title }}</h4>
+              <small><h8 align="right" class="section-subheading text-muted">{{ timestamp }}</h8></small>
+              <hr/>
+              <small><a href="#">#{{topic}}</a></small>
+              <br/>
+              <p>{{description}}</p>
+              <hr/>
+               <!-- Reply REQUEST -->
+              <form action="/comentarios/add" method="POST">
+                <input type="hidden" name="_method" value="ADD">
+                <p>
+                      <button type="submit" class="float-right btn text-white btn-link"><i class="fa fa-reply"></i>Comentar</button>
+                      
+                      <a class="float-right btn text-red btn-link btn-sm"> <i class="fa fa-heart"></i> Like {{ views }}</a>
+                 </p>   
+              </form>    
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{{else}}
+{{/each}}
+</div>

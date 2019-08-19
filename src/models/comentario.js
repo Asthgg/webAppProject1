@@ -10,9 +10,12 @@ const ComentarioSchema = new Schema({
   likes: { type: Number, default: 0 },
   timestamp: { type: Date, default: Date.now },
   user: {
-    type: String,
+    type: Schema.Types.ObjectId, ref: 'User',
     required: true
-  }
+  },
+  reply: [{
+    type: Schema.Types.ObjectId, ref: 'Comentario'
+  }]
 });
 
 module.exports = mongoose.model('Comentario', ComentarioSchema);

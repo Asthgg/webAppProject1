@@ -10,11 +10,14 @@ const { isAuthenticated } = require('../helpers/auth');
 // Nuevo comentario
 router.get('/comentarios/add', isAuthenticated, (req, res) => {
   try {
+    console.log(res);
     res.render('comentarios/new-comentario');
   } catch (error) {
     console.error(error);
   }
 });
+
+
 
 router.post('/comentarios/add', isAuthenticated, async (req, res) => {
   try {
@@ -57,8 +60,10 @@ router.get('/miscomentarios', isAuthenticated, async (req, res) => {
 
 // Get comentario
 router.get('/comentarios', isAuthenticated, async (req, res) => {
-  const comentarios = await Comentario.find({user: req.user.id}).sort({date: 'desc'});
+  const comentarios = await Comentario.find().sort({date: 'desc'});
+  console.log(comentarios);
   res.render('comentarios/todos-comentarios', { comentarios });
+
 });
 
 // Editar comentario
